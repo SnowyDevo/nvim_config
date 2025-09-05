@@ -27,6 +27,7 @@ return {
 					"emmet_ls",
 					"prismals",
 					"ruff",
+					"jdtls",
 				},
 			})
 		end,
