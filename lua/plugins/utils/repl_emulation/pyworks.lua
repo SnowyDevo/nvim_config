@@ -1,16 +1,11 @@
 return {
 	{
 		"jeryldev/pyworks.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		lazy = false,
+		priority = 100,
 		dependencies = {
-			{
-				"GCBallesteros/jupytext.nvim",
-				config = true,
-			},
-			{
-				"benlubas/molten-nvim", -- Required: Code execution
-				build = ":UpdateRemotePlugins", -- IMPORTANT: Required for Molten to work
-			},
+			"GCBallesteros/jupytext.nvim",
+			"benlubas/molten-nvim", -- Required: Code execution
 			"3rd/image.nvim", -- Required: Image display
 		},
 		config = function()
