@@ -4,7 +4,14 @@ return {
 		dependencies = {
 			{
 				"GCBallesteros/jupytext.nvim",
-				config = true, -- IMPORTANT: This ensures jupytext.setup() is called!
+				config = function() -- IMPORTANT: This ensures jupytext.setup() is called!
+					require("jupytext").setup({
+						style = "percent",
+						output_extension = "auto", -- Default extension. Don't change unless you know what you are doing
+						force_ft = nil, -- Default filetype. Don't change unless you know what you are doing
+						custom_language_formatting = {},
+					})
+				end,
 			},
 			{
 				"benlubas/molten-nvim", -- Required: Code execution
@@ -24,7 +31,9 @@ return {
 					auto_install_essentials = true,
 					essentials = { "pynvim", "ipykernel", "jupyter_client", "jupytext" },
 				},
-				image_backend = vim.fn.has("gui_running") == 1 and "kitty" and "ueberzug", -- or "ueberzug" for other terminals
+
+				--Conditional for ueberzug or kitty
+				image_backend = "kitty", -- or "ueberzug" for other terminals
 
 				on_notebook_open = function(bufnr)
 					vim.defer_fn(function()
