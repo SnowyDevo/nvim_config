@@ -41,75 +41,7 @@ return {
 			root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
 
 			settings = {
-				java = {
-					eclipse = {
-						downloadSources = true,
-					},
-					configuration = {
-						updateBuildConfiguration = "interactive",
-						runtimes = {
-							{
-								name = "JavaSE-17",
-								path = "/usr/lib/jvm/java-17-openjdk/",
-							},
-							{
-								name = "JavaSE-21",
-								path = "/usr/lib/jvm/java-21-openjdk/",
-								default = true,
-							},
-						},
-					},
-					maven = {
-						downloadSources = true,
-					},
-					implementationsCodeLens = {
-						enabled = true,
-					},
-					referencesCodeLens = {
-						enabled = true,
-					},
-					references = {
-						includeDecompiledSources = true,
-					},
-					format = {
-						enabled = true,
-						settings = {
-							url = vim.fn.stdpath("config") .. "/lang-servers/intellij-java-google-style.xml",
-							profile = "GoogleStyle",
-						},
-					},
-				},
-				signatureHelp = { enabled = true },
-				completion = {
-					favoriteStaticMembers = {
-						"org.hamcrest.MatcherAssert.assertThat",
-						"org.hamcrest.Matchers.*",
-						"org.hamcrest.CoreMatchers.*",
-						"org.junit.jupiter.api.Assertions.*",
-						"java.util.Objects.requireNonNull",
-						"java.util.Objects.requireNonNullElse",
-						"org.mockito.Mockito.*",
-					},
-					importOrder = {
-						"java",
-						"javax",
-						"com",
-						"org",
-					},
-				},
-				extendedClientCapabilities = jdtls.extendedClientCapabilities,
-				sources = {
-					organizeImports = {
-						starThreshold = 9999,
-						staticStarThreshold = 9999,
-					},
-				},
-				codeGeneration = {
-					toString = {
-						template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-					},
-					useBlocks = true,
-				},
+				java = {},
 			},
 
 			flags = {
