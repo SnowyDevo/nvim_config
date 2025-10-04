@@ -60,31 +60,38 @@ return {
 			local opts = { noremap = true, silent = true, buffer = bufnr }
 
 			-- IntelliJ-inspired mappings
-			vim.keymap.set("n", "<leader>oi", jdtls.organize_imports, opts, { desc = "Optimize Imports" })
-			vim.keymap.set("n", "<leader>rv", jdtls.extract_variable, opts, { desc = "Refactor: Extract Variable" })
-			vim.keymap.set("v", "<leader>rv", [[<ESC><CMD>lua require('jdtls').extract_variable(true)<CR>]], opts)
-			vim.keymap.set("n", "<leader>rc", jdtls.extract_constant, opts, { desc = "Refactor: Extract Constant" })
-			vim.keymap.set("v", "<leader>rc", [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]], opts)
-			vim.keymap.set(
-				"v",
-				"<leader>rm",
-				[[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-				opts,
-				{ desc = "Refactor: Extract Method" }
-			)
+			opts.desc = "Optimize Imports"
+			vim.keymap.set("n", "<leader>oi", jdtls.organize_imports, opts)
 
-			vim.keymap.set("n", "<leader>tc", jdtls.test_class, opts, { desc = "Test Class" }) -- Test Class
+			opts.desc = "Refactor: Extract Variable"
+			vim.keymap.set("n", "<leader>rv", jdtls.extract_variable, opts)
+			vim.keymap.set("v", "<leader>rv", [[<ESC><CMD>lua require('jdtls').extract_variable(true)<CR>]], opts)
+
+			opts.desc = "Refactor: Extract Constant"
+			vim.keymap.set("n", "<leader>rc", jdtls.extract_constant, opts)
+			vim.keymap.set("v", "<leader>rc", [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]], opts)
+
+			opts.desc = "Refactor: Extract Method"
+			vim.keymap.set("v", "<leader>rm", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], opts)
+
+			opts.desc = "Test Class"
+			vim.keymap.set("n", "<leader>tc", jdtls.test_class, opts) -- Test Class
 			-- Build project (like Ctrl+F9 in IntelliJ)
+			opts.desc = "Compile: Full"
 			vim.keymap.set("n", "<leader>bc", '<Cmd>lua require("jdtls").compile("full")<CR>', opts)
 
-			-- Incremental build (compile changed files)
+			opts.desc = "Compile: Incremental"
 			vim.keymap.set("n", "<leader>bi", '<Cmd>lua require("jdtls").compile("incremental")<CR>', opts)
 
 			-- Update project configuration (like refreshing Gradle/Maven)
+			opts.desc = "Update Project Configs"
 			vim.keymap.set("n", "<leader>bu", '<Cmd>lua require("jdtls").update_project_config()<CR>', opts)
 
 			-- Build and run main class
+			opts.desc = "Compile and Run"
 			vim.keymap.set("n", "<F5>", '<Cmd>lua require("jdtls").test_class()<CR>', opts)
+
+			opts.desc = "Test Method"
 			vim.keymap.set("n", "<leader>tm", jdtls.test_nearest_method, opts, { desc = "Test Method" }) -- Test Method
 		end
 
