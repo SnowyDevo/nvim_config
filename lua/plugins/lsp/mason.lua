@@ -47,6 +47,8 @@ return {
 					"zls",
 					"isort",
 					"black",
+					"java-test",
+					"java-debug-adapter",
 				},
 			})
 		end,
