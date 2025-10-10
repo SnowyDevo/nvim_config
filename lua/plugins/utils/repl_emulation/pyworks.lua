@@ -17,7 +17,8 @@ return {
 					auto_install_essentials = true,
 					essentials = { "pynvim", "ipykernel", "jupyter_client", "jupytext" },
 				},
-				--Conditional for ueberzug or kitty
+				-- Conditional for ueberzug or kitty
+				-- image_backend = "ueberzug",
 				image_backend = "kitty", -- or "ueberzug" for other terminals
 				-- Optional: Skip auto-configuration of specific dependencies
 				-- skip_molten = false,
