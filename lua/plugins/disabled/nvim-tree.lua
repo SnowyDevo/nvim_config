@@ -1,8 +1,9 @@
+-- depreceate soon
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		local nvimtree = require("nvim-tree")
+		local nvimtree = require("lua.plugins.disabled.nvim-tree")
 
 		-- recommended settings from nvim-tree documentation
 		vim.g.loaded_netrw = 1
@@ -43,6 +44,7 @@ return {
 			git = {
 				ignore = false,
 			},
+			group_empty = true,
 		})
 
 		-- set keymaps

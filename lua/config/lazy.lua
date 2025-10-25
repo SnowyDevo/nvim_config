@@ -29,6 +29,8 @@ require("lazy").setup(
 		{ import = "plugins.theme" },
 		{ import = "plugins.lsp" },
 		{ import = "plugins.utils.repl_emulation" },
+		{ import = "plugins.utils.testing_environments" },
+		{ import = "plugins.utils.file_explore" },
 	},
 	-- automatically check for plugin updates
 	{

@@ -26,7 +26,7 @@ return {
 			filetype = {
 				java = {
 					[[javac -d "out/production/$(basename $PWD)" $(find src -name "*.java" -not -path "src/test/*") &&]],
-					[[java -cp "out/production/]] .. project_name .. [[" ]] .. find_main_class(),
+					[[java -cp "out/production/]] .. project_name .. [[:src/main/resources" ]] .. find_main_class(),
 				},
 				python = "python3 -u",
 				typescript = "deno run",
