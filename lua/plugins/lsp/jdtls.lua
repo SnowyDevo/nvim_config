@@ -6,7 +6,6 @@ return {
 		"nvim-telescope/telescope.nvim", -- Fuzzy finding
 		"nvim-lua/plenary.nvim",
 	},
-	ft = "java",
 	config = function()
 		local jdtls = require("jdtls")
 		local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
