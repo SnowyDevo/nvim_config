@@ -15,15 +15,14 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			automatic_enable = {
-				exclude = {
-					"jdtls",
-				},
-			},
-		},
+		opts = {},
 		config = function()
 			require("mason-lspconfig").setup({
+				automatic_enable = {
+					exclude = {
+						"jdtls",
+					},
+				},
 				ensure_installed = {
 					"html",
 					"cssls",
