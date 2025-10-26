@@ -1,14 +1,13 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
-	lazy = false,
 	build = ":TSUpdate",
 	dependencies = {
 		"windwp/nvim-ts-autotag",
 	},
 	config = function()
 		-- import nvim-treesitter plugin
-		local treesitter = require("nvim-treesitter")
+		local treesitter = require("nvim-treesitter.configs")
 
 		-- configure treesitter
 		treesitter.setup({ -- enable syntax highlighting
@@ -44,6 +43,7 @@ return {
 				"vimdoc",
 				"c",
 				"python",
+				"java",
 			},
 			incremental_selection = {
 				enable = true,

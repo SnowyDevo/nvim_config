@@ -10,6 +10,7 @@ return {
 		},
 		config = function()
 			require("pyworks").setup({
+				silent = true,
 				-- Just specify any preferences:
 				python = {
 					use_uv = true, -- Use uv for faster package installation
