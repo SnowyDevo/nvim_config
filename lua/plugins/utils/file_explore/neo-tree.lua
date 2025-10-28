@@ -10,6 +10,8 @@ return {
 	config = function()
 		local neotree = require("neo-tree")
 		local highlights = require("neo-tree.ui.highlights")
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
 		-- Open using OS default browser
 		neotree.setup({
 			signs = {

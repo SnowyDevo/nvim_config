@@ -56,6 +56,7 @@ return {
 					"black",
 					"java-test",
 					"java-debug-adapter",
+					"google-java-format",
 				},
 			})
 		end,

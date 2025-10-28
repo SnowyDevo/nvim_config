@@ -50,3 +50,5 @@ vim.keymap.set("n", "<F8>", dap.step_over) -- Step Over
 vim.keymap.set("n", "<F7>", dap.step_into) -- Step Into
 vim.keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
 vim.keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
+
+vim.keymap.set("", "`qq", "<cmd>wqa<CR>", { desc = "Close and Save Process" })
