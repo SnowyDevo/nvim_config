@@ -34,6 +34,7 @@ return {
 					"prismals",
 					"ruff",
 					"jdtls",
+					"lemminx",
 				},
 			})
 		end,

@@ -21,6 +21,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				java = { "google-java-format" },
+				xml = { "lemminx" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

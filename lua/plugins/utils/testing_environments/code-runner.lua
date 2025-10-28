@@ -1,9 +1,9 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 
-local function find_main_class()
+local function find_main_class(main_class_name)
 	local output_dir = "out/production/" .. project_name
 
-	local main_class_files = vim.fn.globpath(output_dir, "**/Main.class", false, true)
+	local main_class_files = vim.fn.globpath(output_dir, "**/" .. main_class_name .. ".class", false, true)
 
 	if #main_class_files > 0 then
 		local main_class_path = main_class_files[1]
@@ -16,7 +16,26 @@ local function find_main_class()
 
 		return fully_qualified
 	end
-	return "Main" --fallback
+	return main_class_name --fallback
+end
+
+local function maven_main_class(main_class_name)
+	local output_dir = "target/classes/"
+
+	local main_class_files = vim.fn.globpath(output_dir, "**/" .. main_class_name .. ".class", false, true)
+
+	if #main_class_files > 0 then
+		local main_class_path = main_class_files[1]
+
+		local relative_path = main_class_path:gsub("^" .. vim.pesc(output_dir) .. "/", "")
+
+		local fully_qualified = relative_path:gsub("/", "."):gsub("%.class$", "")
+
+		print("Found main class: " .. fully_qualified)
+
+		return fully_qualified
+	end
+	return main_class_name --fallback
 end
 
 return {
@@ -26,8 +45,14 @@ return {
 			filetype = {
 				java = {
 					[[javac -d "out/production/$(basename $PWD)" $(find src -name "*.java" -not -path "src/test/*") &&]],
-					[[java -cp "out/production/]] .. project_name .. [[:src/main/resources" ]] .. find_main_class(),
-				},
+					[[java -cp "out/production/]]
+						.. project_name
+						.. [[:src/main/resources:lib/*" ]]
+						.. find_main_class("Main"),
+				}, -- IntelliJ-like
+				-- java = {
+				-- 	[[java -cp "target/classes:~/.m2/repository/" ]] .. maven_main_class("Main"),
+				-- }, -- Maven-like
 				python = "python3 -u",
 				typescript = "deno run",
 				rust = {
