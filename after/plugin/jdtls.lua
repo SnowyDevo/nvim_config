@@ -231,49 +231,50 @@ local function start_jdtls()
 	require("jdtls").start_or_attach(config)
 end
 
--- Auto-navigate to Main.java in NeoTree when opening with `nvim .`
+-- Auto-navigate to App.java or Main.java in NeoTree when opening with `nvim .`
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		-- Check if opened with exactly `nvim .` (argc == 1 and arg is ".")
 		local opened_with_dot = vim.fn.argc() == 1 and vim.fn.argv(0) == "."
 
 		if opened_with_dot and scope_root_project() then
-			-- Search for Main.java
-			local main_locations = {
+			-- Preferred order: App.java first, then Main.java
+			local preferred_files = {
+				"src/main/java/App.java",
+				"src/App.java",
+				"App.java",
 				"src/main/java/Main.java",
 				"src/Main.java",
 				"Main.java",
 			}
 
-			local main_file = nil
-			for _, location in ipairs(main_locations) do
+			local target_file = nil
+			for _, location in ipairs(preferred_files) do
 				local full_path = vim.fn.getcwd() .. "/" .. location
 				if vim.fn.filereadable(full_path) == 1 then
-					main_file = full_path
+					target_file = full_path
 					break
 				end
 			end
 
-			-- Fallback: search recursively
-			if not main_file then
-				main_file = vim.fn.findfile("Main.java", vim.fn.getcwd() .. "/**")
-				if main_file ~= "" then
-					main_file = vim.fn.fnamemodify(main_file, ":p")
-				else
-					main_file = nil
+			-- Fallback: search recursively for App.java first, then Main.java
+			if not target_file then
+				for _, name in ipairs({ "App.java", "Main.java" }) do
+					local found = vim.fn.findfile(name, vim.fn.getcwd() .. "/**")
+					if found ~= "" then
+						target_file = vim.fn.fnamemodify(found, ":p")
+						break
+					end
 				end
 			end
 
-			-- Reveal Main.java in NeoTree (don't open it)
-			if main_file then
+			-- Reveal in NeoTree
+			if target_file then
 				vim.defer_fn(function()
-					-- Open the file
-					vim.cmd("edit " .. vim.fn.fnameescape(main_file))
-
+					vim.cmd("edit " .. vim.fn.fnameescape(target_file))
 					vim.defer_fn(function()
 						require("neo-tree.command").execute({
 							action = "show",
-							reveal_file = main_file,
+							reveal_file = target_file,
 							reveal_force_cwd = true,
 						})
 					end, 100)
@@ -282,6 +283,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+
 -- Check if we're in a Java project when Neovim starts
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "java",
