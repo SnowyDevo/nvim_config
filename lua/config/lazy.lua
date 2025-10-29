@@ -31,7 +31,6 @@ require("lazy").setup(
 		{ import = "plugins.utils" },
 		{ import = "plugins.theme" },
 		{ import = "plugins.lsp" },
-		{ import = "plugins.utils.repl_emulation" },
 		{ import = "plugins.utils.testing_environments" },
 		{ import = "plugins.utils.file_explore" },
 	},
