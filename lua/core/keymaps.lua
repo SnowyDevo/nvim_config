@@ -7,33 +7,33 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 -- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with [j] -> [k]" })
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>csh", ":nohl<CR>", { desc = "[c]lear [s]earch [h]ighlights" })
 
 -- delete single character without copying into register
 -- keymap.set("n", "x", '"_x')
 
 -- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
+keymap.set("n", "<leader>+", "<C-a>", { desc = "[+] increment number" }) -- increment
+keymap.set("n", "<leader>-", "<C-x>", { desc = "[-] decrement number" }) -- decrement
 --window swapping
-keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Focus left" })
-keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Focus right" })
-keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Focus up" })
-keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Focus down" })
+keymap.set("n", "<leader>wh", "<C-w>h", { desc = "focus [w]indow [h] -> left" })
+keymap.set("n", "<leader>wl", "<C-w>l", { desc = "focus [w]indow [l] -> right" })
+keymap.set("n", "<leader>wk", "<C-w>k", { desc = "focus [w]indow [k] -> up" })
+keymap.set("n", "<leader>wj", "<C-w>j", { desc = "focus [w]indow [j] -> down" })
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "[s]plit window [v]ertically" }) -- split window vertically
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "[s]plit window [h]orizontally" }) -- split window horizontally
+keymap.set("n", "<leader>se", "<C-w>=", { desc = "[s]plits [e]qual size" }) -- make split windows equal width & height
+keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "[s]plit e[x]it" }) -- close current split window
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "[t]ab [o]pen" }) -- open new tab
+keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "[t]ab e[x]it/close" }) -- close current tab
+keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "[t]ab [l] -> right (next tab)" }) --  go to next tab
+keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "[t]ab [h] -> left (prev. tab)" }) --  go to previous tab
+keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "[t]ab open [f]ile to new tab" }) --  move current buffer to new tab
 
 keymap.set({ "n" }, "<C-k>", function()
 	require("lsp_signature").toggle_float_win()
@@ -51,4 +51,5 @@ vim.keymap.set("n", "<F7>", dap.step_into) -- Step Into
 vim.keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
 vim.keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
 
-vim.keymap.set("", "`qq", "<cmd>wqa<CR>", { desc = "Close and Save Process" })
+vim.keymap.set("", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
+vim.keymap.set("", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })

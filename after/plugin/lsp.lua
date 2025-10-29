@@ -1,14 +1,6 @@
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "java",
 	callback = function(args)
-		-- TODO:
-		-- Plugins to checkout: Nvim-Tree(if Coc would be needed for java), Spring Boot Nvim (java framework), Git Signs (Git), Fugitive (Git), coc.nvim (might be useful but it's written in Typescript and Vimscript that are very slow compared to Lua), Vimspector (check if nvim-dap doesn't satisfy)
-		-- https://github.com/unknownkoder/Java-FullStack-NeoVim-Configuration
-		-- https://www.chiarulli.me/Neovim/24-neovim-and-java/
-		-- setup testing (everything is already installed), importing
-		-- NOTE:
-		-- nvim-jdtls is dependent on root_dir aka current directory where neovim is opened, if issue raises, just check cwd
-
 		local home = os.getenv("HOME")
 		local eclipse_jdtls_path = vim.fn.expand("$MASON/packages/jdtls")
 		local equinox_launcher_path =
@@ -156,9 +148,6 @@ vim.api.nvim_create_autocmd("FileType", {
 				java = {
 					format = {
 						enabled = false,
-						-- settings = {
-						--   url = home .. "/.local/java/eclipse-java-google-style.xml",
-						-- },
 					},
 					signatureHelp = { enabled = true },
 					contentProvider = { preferred = "fernflower" }, -- Use fernflower to decompile library code

@@ -26,6 +26,12 @@ return {
 				-- skip_jupytext = false,
 				-- skip_image = false,
 				-- skip_keymaps = false,
+				notifications = {
+					verbose_first_time = false,
+					silent_when_ready = false,
+					show_progress = false,
+					debug_mode = false,
+				},
 			})
 		end,
 	},

@@ -10,8 +10,6 @@ return {
 	config = function()
 		local neotree = require("neo-tree")
 		local highlights = require("neo-tree.ui.highlights")
-		vim.g.loaded_netrw = 1
-		vim.g.loaded_netrwPlugin = 1
 		-- Open using OS default browser
 		neotree.setup({
 			signs = {
@@ -47,6 +45,7 @@ return {
 				},
 			},
 			filesystem = {
+				scan_mode = "deep",
 				group_empty_dirs = true,
 				window = {
 					mappings = {
@@ -129,10 +128,20 @@ return {
 
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>ee", "<cmd>Neotree left toggle<CR>", { desc = "Toggle file explorer" })
-		keymap.set("n", "<leader>ew", "<cmd>Neotree float<CR>", { desc = "Open floating file explorer explorer" })
-		keymap.set("n", "<leader>eb", "<cmd>Neotree focus buffers left<CR>", { desc = "Focus buffer list" })
-		keymap.set("n", "<leader>eg", "<cmd>Neotree focus git_status left<CR>", { desc = "Focus Git Status" })
-		keymap.set("n", "<leader>ef", "<cmd>Neotree <CR>", { desc = "Open file explorer on file" })
+		keymap.set("n", "<leader>ee", "<cmd>Neotree left toggle<CR>", { desc = "toggle file [e][e]xplorer" })
+		keymap.set("n", "<leader>ew", "<cmd>Neotree float<CR>", { desc = "open file [e]xplorer [w]indow" })
+		keymap.set(
+			"n",
+			"<leader>eb",
+			"<cmd>Neotree focus buffers left<CR>",
+			{ desc = "focus [e]xplorer [b]uffer list" }
+		)
+		keymap.set(
+			"n",
+			"<leader>eg",
+			"<cmd>Neotree focus git_status left<CR>",
+			{ desc = "focus [e]xplorer [g]it status" }
+		)
+		keymap.set("n", "<leader>ef", "<cmd>Neotree <CR>", { desc = "open file [e]xplorer on [f]ile" })
 	end,
 }
