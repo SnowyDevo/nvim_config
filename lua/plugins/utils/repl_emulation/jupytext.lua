@@ -1,6 +1,8 @@
 return {
 	"GCBallesteros/jupytext.nvim",
-	lazy = false,
+	cond = function()
+		return vim.fn.glob("pyproject.toml") ~= "" or vim.fn.glob("requirements.txt") ~= ""
+	end,
 	config = function()
 		require("jupytext").setup({
 			style = "hydrogen",

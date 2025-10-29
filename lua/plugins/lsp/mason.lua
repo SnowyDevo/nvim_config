@@ -57,6 +57,7 @@ return {
 					"java-test",
 					"java-debug-adapter",
 					"google-java-format",
+					"checkstyle",
 				},
 			})
 		end,

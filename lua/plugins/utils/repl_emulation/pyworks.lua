@@ -1,8 +1,10 @@
 return {
 	{
 		"jeryldev/pyworks.nvim",
-		lazy = false,
 		priority = 100,
+		cond = function()
+			return vim.fn.glob("pyproject.toml") ~= "" or vim.fn.glob("requirements.txt") ~= ""
+		end,
 		dependencies = {
 			"GCBallesteros/jupytext.nvim",
 			"benlubas/molten-nvim", -- Required: Code execution

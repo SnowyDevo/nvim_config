@@ -1,4 +1,5 @@
 return {
+
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -35,6 +36,6 @@ return {
 				async = false,
 				timeout_ms = 1000,
 			})
-		end, { desc = "Format file or range (in visual mode)" })
+		end, { desc = "[m][p] format file or range" })
 	end,
 }
