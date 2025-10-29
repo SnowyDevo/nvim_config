@@ -3,7 +3,22 @@ return {
 		"jeryldev/pyworks.nvim",
 		priority = 100,
 		cond = function()
-			return vim.fn.glob("pyproject.toml") ~= "" or vim.fn.glob("requirements.txt") ~= ""
+			local indicators = {
+				"pyproject.toml",
+				"requirements.txt",
+				"setup.py",
+				"setup.cfg",
+				"*.py",
+				".venv",
+				"venv",
+			}
+
+			for _, indicator in ipairs(indicators) do
+				if vim.fn.glob(indicator) ~= "" then
+					return true
+				end
+			end
+			return false
 		end,
 		dependencies = {
 			"GCBallesteros/jupytext.nvim",
@@ -34,6 +49,35 @@ return {
 					show_progress = false,
 					debug_mode = false,
 				},
+			})
+		end,
+	},
+	{
+		"GCBallesteros/jupytext.nvim",
+		cond = function()
+			local indicators = {
+				"pyproject.toml",
+				"requirements.txt",
+				"setup.py",
+				"setup.cfg",
+				"*.py",
+				".venv",
+				"venv",
+			}
+
+			for _, indicator in ipairs(indicators) do
+				if vim.fn.glob(indicator) ~= "" then
+					return true
+				end
+			end
+			return false
+		end,
+		config = function()
+			require("jupytext").setup({
+				style = "hydrogen",
+				output_extension = "auto", -- Default extension. Don't change unless you know what you are doing
+				force_ft = nil, -- Default filetype. Don't change unless you know what you are doing
+				custom_language_formatting = {},
 			})
 		end,
 	},
