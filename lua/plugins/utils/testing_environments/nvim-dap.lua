@@ -28,14 +28,12 @@ return {
 		end
 		dap.listeners.before.event_terminated.dapui_config = function()
 			dapui.open({ reset = true })
-			require("custom-functions")
 			if file_exists(vim.g.LAST_EXECUTED_FILE) and vim.g.DELETE_LAST_EXECUTED_FILE then
 				vim.cmd("silent!!{ rm -f " .. vim.g.LAST_EXECUTED_FILE .. "; } >/dev/null 2>&1")
 			end
 		end
 		dap.listeners.before.event_exited.dapui_config = function()
 			dapui.open({ reset = true })
-			require("custom-functions")
 			if file_exists(vim.g.LAST_EXECUTED_FILE) and vim.g.DELETE_LAST_EXECUTED_FILE then
 				vim.cmd("silent!!{ rm -f " .. vim.g.LAST_EXECUTED_FILE .. "; } >/dev/null 2>&1")
 			end
@@ -52,7 +50,6 @@ return {
 				type = "codelldb",
 				request = "launch",
 				program = function()
-					require("custom-functions")
 					if vim.g.CPP_PROJECT then
 						if file_exists("main") then
 							vim.cmd("silent!!{ rm -f main; } >/dev/null 2>&1")
