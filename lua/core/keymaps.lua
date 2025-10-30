@@ -31,8 +31,8 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "[s]plit e[x]it" }) -- 
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "[t]ab [o]pen" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "[t]ab e[x]it/close" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "[t]ab [l] -> right (next tab)" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "[t]ab [h] -> left (prev. tab)" }) --  go to previous tab
+keymap.set("n", "<leader>tl", "<cmd>tabn<CR>", { desc = "[t]ab [l] -> right (next tab)" }) --  go to next tab
+keymap.set("n", "<leader>th", "<cmd>tabp<CR>", { desc = "[t]ab [h] -> left (prev. tab)" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "[t]ab open [f]ile to new tab" }) --  move current buffer to new tab
 
 keymap.set({ "n" }, "<C-k>", function()
@@ -51,5 +51,13 @@ vim.keymap.set("n", "<F7>", dap.step_into) -- Step Into
 vim.keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
 vim.keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
 
-vim.keymap.set("", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
-vim.keymap.set("", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
+vim.keymap.set("n", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
+vim.keymap.set("n", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
+
+vim.keymap.set(
+	"n",
+	"<leader>cc",
+	"<cmd>tabnew ~/.config/nvim/ | e ~/.config/nvim/lua/core/options.lua<CR>",
+	{ desc = "open [c]ode[c]onfiguration" }
+)
+vim.keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
