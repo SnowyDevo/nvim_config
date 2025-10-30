@@ -1,3 +1,16 @@
+local function file_exists(name)
+	if name == nil then
+		return false
+	end
+	local f = io.open(name, "r")
+	if f then
+		io.close(f)
+		return true
+	else
+		return false
+	end
+end
+
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
