@@ -35,6 +35,7 @@ return {
 					"ruff",
 					"jdtls",
 					"lemminx",
+					"fortls",
 				},
 			})
 		end,
@@ -58,6 +59,8 @@ return {
 					"java-debug-adapter",
 					"google-java-format",
 					"checkstyle",
+					"fprettify",
+					"fortitude",
 				},
 			})
 		end,

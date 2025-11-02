@@ -1,6 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
+	ft = "python",
 	build = ":TSUpdate",
 	dependencies = {
 		"windwp/nvim-ts-autotag",
@@ -43,6 +44,7 @@ return {
 				"vimdoc",
 				"c",
 				"python",
+				"fortran",
 			},
 			incremental_selection = {
 				enable = true,

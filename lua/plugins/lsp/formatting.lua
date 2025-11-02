@@ -22,6 +22,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				java = { "google-java-format" },
+				fortran = { "fprettify" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
