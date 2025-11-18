@@ -32,10 +32,12 @@ return {
 					"graphql",
 					"emmet_ls",
 					"prismals",
-					"ruff",
 					"jdtls",
 					"lemminx",
 					"fortls",
+					"pyright",
+					"tombi",
+					"codebook",
 				},
 			})
 		end,
@@ -61,6 +63,7 @@ return {
 					"checkstyle",
 					"fprettify",
 					"fortitude",
+					"ruff",
 				},
 			})
 		end,

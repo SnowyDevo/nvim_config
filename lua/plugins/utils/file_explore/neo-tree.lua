@@ -27,6 +27,11 @@ return {
 					expander_expanded = "",
 					expander_highlight = "NeoTreeExpander",
 				},
+				icon = {
+					extensions = {
+						fxml = "",
+					},
+				},
 			},
 			event_handlers = {
 				{

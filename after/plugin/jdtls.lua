@@ -187,6 +187,7 @@ local function start_jdtls()
 						{
 							name = "JavaSE-25",
 							path = "/usr/lib/jvm/java-25-openjdk/",
+							default = true,
 						},
 						{
 							name = "JavaSE-21",

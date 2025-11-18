@@ -61,3 +61,6 @@ vim.keymap.set(
 	{ desc = "open [c]ode[c]onfiguration" }
 )
 vim.keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
