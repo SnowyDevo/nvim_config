@@ -18,6 +18,16 @@ local function start_jdtls()
 	-- current project found using the root_marker as the dir for project specific data.
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+	capabilities.workspace = {
+		fileOperations = {
+			willRename = true,
+			didRename = true,
+			willCreate = true,
+			didCreate = true,
+			willDelete = true,
+			didDelete = true,
+		},
+	}
 
 	local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 	extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
