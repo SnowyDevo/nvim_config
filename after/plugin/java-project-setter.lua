@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 		-- Recursive fallback
 		if not target_file then
-			for _, name in ipairs({ "App.java", "Main.java" }) do
+			for _, name in ipairs({ "App.java", "Main.java", "GrahApp.java", "Application.java" }) do
 				local found = vim.fn.findfile(name, cwd .. "/**")
 				if found ~= "" then
 					target_file = vim.fn.fnamemodify(found, ":p")
@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end, 50)
 
 		----------------------------------------------------------------------
-		-- STEP 2: Load all Java files in background (async)
+		-- STEP 2: Load all Java files in background (async, batched)
 		----------------------------------------------------------------------
 		vim.system({ "find", "src", "-type", "f", "-name", "*.java" }, { text = true }, function(proc)
 			local out = proc.stdout
@@ -83,15 +83,34 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 			local files = vim.split(out, "\n", { trimempty = true })
 
-			for _, file in ipairs(files) do
-				vim.schedule(function()
+			-- Process files in small batches to avoid blocking
+			local batch_size = 5
+			local index = 1
+
+			local function process_batch()
+				local batch_end = math.min(index + batch_size - 1, #files)
+
+				for i = index, batch_end do
+					local file = files[i]
 					vim.cmd("badd " .. file)
 					local bufnr = vim.fn.bufnr(file)
 					if bufnr > 0 then
 						vim.fn.bufload(bufnr)
 					end
-				end)
+				end
+
+				index = batch_end + 1
+
+				-- Schedule next batch if more files remain
+				if index <= #files then
+					vim.defer_fn(process_batch, 10) -- 10ms delay between batches
+				end
 			end
+
+			-- Start processing after initial UI is ready
+			vim.schedule(function()
+				vim.defer_fn(process_batch, 500) -- Wait 500ms before starting
+			end)
 		end)
 
 		----------------------------------------------------------------------
