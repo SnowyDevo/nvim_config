@@ -1,4 +1,11 @@
-local image_backend = vim.env.TERM == "xterm-kitty" and "kitty" or "ueberzug"
+local is_ssh = vim.env.SSH_CONNECTION ~= nil
+
+local image_backend
+if not is_ssh and vim.env.TERM == "xterm-kitty" then
+	image_backend = "kitty"
+else
+	image_backend = nil -- or "none" if you don't want fallback
+end
 
 local function scope_root_project()
 	-- Get the directory of the current buffer
