@@ -63,6 +63,7 @@ return {
 					"checkstyle",
 					"fprettify",
 					"fortitude",
+					"eslint_d",
 					"ruff",
 				},
 			})
