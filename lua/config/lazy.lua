@@ -25,41 +25,19 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Setup lazy.nvim
-if not vim.g.vscode then
-	require("lazy").setup(
-		{
-			{ import = "plugins" },
-			{ import = "plugins.utils" },
-			{ import = "plugins.theme" },
-			{ import = "plugins.lsp" },
-			{ import = "plugins.utils.testing_environments" },
-			{ import = "plugins.utils.file_explore" },
-		},
-		-- automatically check for plugin updates
-		{
-			checker = {
-				enabled = true,
-				notify = false,
-			},
-			change_detection = {
-				notify = false,
-			},
-		}
-	)
-else
-	require("lazy").setup(
-		{
-			{ import = "vsplugins" },
-		},
-		-- automatically check for plugin updates
-		{
-			checker = {
-				enabled = false,
-				notify = false,
-			},
-			change_detection = {
-				notify = false,
-			},
-		}
-	)
-end
+require("lazy").setup({
+	{ import = "plugins" },
+	{ import = "plugins.utils" },
+	{ import = "plugins.theme" },
+	{ import = "plugins.lsp" },
+	{ import = "plugins.utils.testing_environments" },
+	{ import = "plugins.utils.file_explore" },
+}, {
+	checker = {
+		enabled = true,
+		notify = false,
+	},
+	change_detection = {
+		notify = false,
+	},
+})
