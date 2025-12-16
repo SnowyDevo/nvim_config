@@ -5,10 +5,6 @@ local keymap = vim.keymap -- for conciseness
 
 ---------------------
 -- General Keymaps -------------------
-
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with [j] -> [k]" })
-
 -- clear search highlights
 keymap.set("n", "<leader>csh", ":nohl<CR>", { desc = "[c]lear [s]earch [h]ighlights" })
 
@@ -52,19 +48,18 @@ if not vim.g.vscode then
 	vim.keymap.set("n", "<F7>", dap.step_into) -- Step Into
 	vim.keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
 	vim.keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
+	vim.keymap.set("n", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
+	vim.keymap.set("n", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
+
+	vim.keymap.set(
+		"n",
+		"<leader>cc",
+		"<cmd>tabnew ~/.config/nvim/ | e ~/.config/nvim/lua/core/options.lua<CR>",
+		{ desc = "open [c]ode[c]onfiguration" }
+	)
+
+	vim.keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
 end
-
-vim.keymap.set("n", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
-vim.keymap.set("n", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
-
-vim.keymap.set(
-	"n",
-	"<leader>cc",
-	"<cmd>tabnew ~/.config/nvim/ | e ~/.config/nvim/lua/core/options.lua<CR>",
-	{ desc = "open [c]ode[c]onfiguration" }
-)
-
-vim.keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
