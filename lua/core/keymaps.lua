@@ -3,8 +3,6 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
----------------------
--- General Keymaps -------------------
 -- clear search highlights
 keymap.set("n", "<leader>csh", ":nohl<CR>", { desc = "[c]lear [s]earch [h]ighlights" })
 
@@ -33,33 +31,36 @@ if not vim.g.vscode then
 	keymap.set("n", "<leader>th", "<cmd>tabp<CR>", { desc = "[t]ab [h] -> left (prev. tab)" }) --  go to previous tab
 	keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "[t]ab open [f]ile to new tab" }) --  move current buffer to new tab
 
-	keymap.set({ "n" }, "<C-k>", function()
-		require("lsp_signature").toggle_float_win()
-	end, { silent = true, noremap = true, desc = "toggle signature" })
-
+	-- keymap.set({ "n" }, "<C-k>", function()
+	-- 	require("lsp_signature").toggle_float_win()
+	-- end, { silent = true, noremap = true, desc = "toggle signature" })
+	--
 	keymap.set({ "n" }, "<Leader>k", function()
 		vim.lsp.buf.signature_help()
 	end, { silent = true, noremap = true, desc = "toggle signature" })
 
 	local dap = require("dap")
 
-	vim.keymap.set("n", "<F5>", dap.continue) -- Start/Continue
-	vim.keymap.set("n", "<F8>", dap.step_over) -- Step Over
-	vim.keymap.set("n", "<F7>", dap.step_into) -- Step Into
-	vim.keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
-	vim.keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
-	vim.keymap.set("n", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
-	vim.keymap.set("n", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
+	keymap.set("n", "<F5>", dap.continue) -- Start/Continue
+	keymap.set("n", "<F8>", dap.step_over) -- Step Over
+	keymap.set("n", "<F7>", dap.step_into) -- Step Into
+	keymap.set("n", "<S-F8>", dap.step_out) -- Step Out
+	keymap.set("n", "<F9>", dap.toggle_breakpoint) -- Toggle Breakpoint
+	keymap.set("n", "`wq", "<cmd>wqa!<CR>", { desc = "force close and save all buffers" })
+	keymap.set("n", "`qq", "<cmd>qa!<CR>", { desc = "force close all buffers" })
 
-	vim.keymap.set(
+	keymap.set(
 		"n",
 		"<leader>cc",
 		"<cmd>tabnew ~/.config/nvim/ | e ~/.config/nvim/lua/core/options.lua<CR>",
 		{ desc = "open [c]ode[c]onfiguration" }
 	)
 
-	vim.keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
+	keymap.set("n", "<leader>ccr", "<cmd>source $MYVIMRC<CR>", { desc = "[c]ode [c]onfiguration [r]eset" })
 end
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- tmux binds
+
+-- move function blocks
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")

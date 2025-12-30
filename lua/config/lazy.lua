@@ -32,7 +32,6 @@ require("lazy").setup({
 	{ import = "plugins.lsp" },
 	{ import = "plugins.utils.testing_environments" },
 	{ import = "plugins.utils.file_explore" },
-	{ import = "plugins.misc" },
 }, {
 	checker = {
 		enabled = true,

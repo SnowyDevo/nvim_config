@@ -38,6 +38,8 @@ return {
 					"pyright",
 					"tombi",
 					"codebook",
+					"clangd",
+					"arduino-language-server",
 				},
 			})
 		end,
